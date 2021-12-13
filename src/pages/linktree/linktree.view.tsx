@@ -57,7 +57,7 @@ const socialLinks: SocialMediaProps[] = [
 
 const Linktree = () => {
   return (
-    <Container className={`flex flex-col bg-${bgColor}`}>
+    <Container className={`bg-${bgColor}`}>
       <main className="w-3/4 m-auto h-full text-center py-14 lg:w-1/3 lg:m-auto">
         <img
           className="rounded-full w-24 h-24 m-auto mb-4"
