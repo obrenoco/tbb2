@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "../../components/Container";
 import { EmailIcon } from "../../components/icons/email";
 import { InstagramIcon } from "../../components/icons/instagram";
 
@@ -56,7 +57,7 @@ const socialLinks: SocialMediaProps[] = [
 
 const Linktree = () => {
   return (
-    <div className={`main-container flex flex-col bg-${bgColor}`}>
+    <Container className={`flex flex-col bg-${bgColor}`}>
       <main className="w-3/4 m-auto h-full text-center py-14 lg:w-1/3 lg:m-auto">
         <img
           className="rounded-full w-24 h-24 m-auto mb-4"
@@ -90,7 +91,7 @@ const Linktree = () => {
           ❤
         </a>
       </footer>
-    </div>
+    </Container>
   );
 };
 
