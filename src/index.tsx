@@ -1,12 +1,19 @@
-import React from "react";
+import { Route, Router } from "brouther";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import Home from "./pages/home.view";
+import Linktree from "./pages/linktree.view";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <Router notFound={() => <div>Not Found</div>}>
+        <Route exact path="/" component={Home} />
+        <Route path="/linktree" component={Linktree} />
+      </Router>
+    </Suspense>
   </React.StrictMode>,
   document.getElementById("root")
 );

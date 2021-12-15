@@ -1,4 +1,4 @@
-import Linktree from "./pages/linktree/linktree.view";
+import Linktree from "./pages/linktree.view";
 
 function App() {
   return <Linktree />;

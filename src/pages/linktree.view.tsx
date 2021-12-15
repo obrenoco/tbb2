@@ -1,7 +1,8 @@
 import React from "react";
-import { Container } from "../../components/Container";
-import { EmailIcon } from "../../components/icons/email";
-import { InstagramIcon } from "../../components/icons/instagram";
+import { Container } from "../components/Container";
+import { EmailIcon } from "../components/icons/email";
+import { InstagramIcon } from "../components/icons/instagram";
+import { bgColor, linkColor } from "./home.view";
 
 type LinkProps = {
   title: string;
@@ -10,10 +11,7 @@ type LinkProps = {
 
 type SocialMediaProps = { title: string; link: string; Icon: React.VFC };
 
-const linkColor = "green-600";
-const bgColor = "yellow-400";
-
-const Link = ({ title, link }: LinkProps) => (
+const ListLink = ({ title, link }: LinkProps) => (
   <li
     title={title}
     className={`w-full rounded-full mb-2 border-${linkColor} border-4 text-${linkColor} font-bold py-2 cursor-pointer hover:bg-${linkColor} hover:text-white`}
@@ -68,7 +66,7 @@ const Linktree = () => {
         <p className="mb-6 text-lg text-gray-500">@tudobembrasil</p>
         <ul className="">
           {links.map((x) => (
-            <Link key={x.title} title={x.title} link={x.link} />
+            <ListLink key={x.title} title={x.title} link={x.link} />
           ))}
         </ul>
         <ul className="w-full flex justify-center gap-x-2 mt-6">
