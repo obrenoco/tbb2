@@ -1,31 +1,36 @@
-import React from "react";
+import { Link } from "brouther";
+import React, { Fragment } from "react";
 import { Container } from "../components/Container";
 import { EmailIcon } from "../components/icons/email";
 import { InstagramIcon } from "../components/icons/instagram";
-import { bgColor, linkColor } from "./home.view";
+import { bgColor, linkClassname, linkColor } from "./home.view";
 
 type LinkProps = {
   title: string;
   link: string;
+  internalLink?: boolean;
 };
 
 type SocialMediaProps = { title: string; link: string; Icon: React.VFC };
 
-const ListLink = ({ title, link }: LinkProps) => (
-  <li
-    title={title}
-    className={`w-full rounded-full mb-2 border-${linkColor} border-4 text-${linkColor} font-bold py-2 cursor-pointer hover:bg-${linkColor} hover:text-white`}
-  >
-    <a href={link} target="_blank" rel="noreferrer">
-      {title}
-    </a>
-  </li>
+const ListLink = ({ title, link, internalLink = false }: LinkProps) => (
+  <Fragment>
+    {internalLink ? (
+      <Link className={linkClassname} href={link} rel="noreferrer">
+        {title}
+      </Link>
+    ) : (
+      <a href={link} className={linkClassname} target="_blank" rel="noreferrer">
+        {title}
+      </a>
+    )}
+  </Fragment>
 );
 
 const SocialLinks: React.FC<SocialMediaProps> = ({
   title,
   link,
-  Icon = InstagramIcon
+  Icon = InstagramIcon,
 }) => (
   <li title={title}>
     <a href={link} target="_blank" rel="noreferrer">
@@ -36,21 +41,21 @@ const SocialLinks: React.FC<SocialMediaProps> = ({
 
 const links: LinkProps[] = [
   { title: "Premier contact", link: "" },
-  { title: "Test de niveau", link: "" }
+  { title: "Test de niveau", link: "" },
+  { title: "Website", link: "./", internalLink: true },
 ];
 
 const socialLinks: SocialMediaProps[] = [
   {
     title: "Instagram",
     link: "https://www.instagram.com/tudobem.brasil/",
-    Icon: InstagramIcon
+    Icon: InstagramIcon,
   },
   {
     title: "Email",
-    link:
-      "mailto:tudobembrasil@gmail.com&subject=Premier Cours&body=Bonjours, j'aimerais avoir plus d'information!",
-    Icon: EmailIcon
-  }
+    link: "mailto:tudobembrasil@gmail.com&subject=Premier Cours&body=Bonjours, j'aimerais avoir plus d'information!",
+    Icon: EmailIcon,
+  },
 ];
 
 const Linktree = () => {
@@ -64,11 +69,20 @@ const Linktree = () => {
         />
         <h1 className="text-3xl font-bold text-green-600">Tudo bem Brasil</h1>
         <p className="mb-6 text-lg text-gray-500">@tudobembrasil</p>
-        <ul className="">
-          {links.map((x) => (
-            <ListLink key={x.title} title={x.title} link={x.link} />
-          ))}
-        </ul>
+        <div className="flex flex-col">
+          {links.map((x) => {
+            console.log(x.internalLink);
+
+            return (
+              <ListLink
+                key={x.title}
+                title={x.title}
+                link={x.link}
+                internalLink={x.internalLink}
+              />
+            );
+          })}
+        </div>
         <ul className="w-full flex justify-center gap-x-2 mt-6">
           {socialLinks.map((x) => (
             <SocialLinks
@@ -80,7 +94,17 @@ const Linktree = () => {
           ))}
         </ul>
       </main>
-      <footer className="w-full text-center py-4 border-t-2">
+      <footer className={`text-center flex justify-around bg-${linkColor}`}>
+        <a
+          href="https://www.github.com/obrenoco"
+          target="_blank"
+          rel="noreferrer"
+          className="py-4"
+        >
+          ❤
+        </a>
+      </footer>
+      {/* <footer className={`w-full text-center py-4 bg-${linkColor}`}>
         <a
           href="https://www.github.com/obrenoco"
           target="_blank"
@@ -88,7 +112,7 @@ const Linktree = () => {
         >
           ❤
         </a>
-      </footer>
+      </footer> */}
     </Container>
   );
 };

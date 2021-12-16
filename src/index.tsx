@@ -6,6 +6,9 @@ import Home from "./pages/home.view";
 import Linktree from "./pages/linktree.view";
 import reportWebVitals from "./reportWebVitals";
 
+const baseName = window.location.origin;
+console.log(baseName, typeof baseName);
+
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={<h1>Loading...</h1>}>
